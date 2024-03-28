@@ -1,0 +1,54 @@
+{% extends 'recetasApp/index.html' %} {% block Titulo %}
+<header>
+  <h1 class="site-heading text-center text-faded d-none d-lg-block">
+    <span class="site-heading-upper text-primary mb-3">~ Sabor a mi ~</span>
+    <span class="site-heading-lower">Sobre Nosotros</span>
+  </h1>
+</header>
+
+{% endblock Titulo %}{% block Contenido %} {% load static %}
+<section class="page-section cta about-heading text:center">
+  <div class="card border-1">
+    <div class="row g-5">
+      <div class="col-md-3">
+        <img
+          src="{%static 'assets/img/ramiroCordoba.jpg'%}"
+          class="img-fluid rounded-start"
+          alt="Chef Ramiro Cordoba"
+        />
+      </div>
+      <div class="col-md-6">
+        <div class="card-body">
+          <h5 class="card-title">Chef Ramiro Cordoba</h5>
+          <p class="card-text">
+            En 2018 decidí perseguir mi mas grande sueño, aquel que desde chico
+            siempre anhelaba, quería ser chef. Ese mismo año culmine mis
+            estudios en IGA y logrando el titulo tan esperado. Pronto, las
+            ofertas comenzaron a surgir y termine desembarcando en Esenio, un
+            pequeño bar en el centro de Rosario.
+          </p>
+          <p class="card-text">
+            El tiempo fue pasando, mientras iba viendo el panorama gastronómico
+            argentino y como es duro trabajar de chef. Fue un día donde tomando
+            mates y reflexionando me di cuenta que amaba la cocina pero que era
+            un simple hobbie y que de eso no quería vivir. Fue ahí donde me
+            llamo la atención la carrera de Ingeniería en sistemas de
+            información en la Universidad Tecnológica Nacional (UTN) y quise
+            probar suerte.
+          </p>
+          <p class="card-text">
+            Creo que fue la mejor decisión que tomé en mi vida, porque no solo
+            encontré la carrera que realmente me apasiona, sino que la
+            universidad me brindo tantos amigos y oportunidades que supe
+            aprovechar. Actualmente estoy a 6 materias de recibirme y si todo
+            sale bien, en junio estaré en algún puesto del área de sistemas de
+            La Segunda Seguros S.A
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock Contenido %} {% block InformacionExtra %}
+<h1></h1>
+{% endblock InformacionExtra %}

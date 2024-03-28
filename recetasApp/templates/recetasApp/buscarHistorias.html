@@ -1,0 +1,44 @@
+{% extends 'recetasApp/index.html' %} {% block Titulo %}
+<header>
+  <h1 class="site-heading text-center text-faded d-none d-lg-block">
+    <span class="site-heading-upper text-primary mb-3">~ Sabor a mi ~</span>
+    <span class="site-heading-lower">Historias de cocina</span>
+  </h1>
+</header>
+
+{% endblock Titulo %} {% block Contenido %}
+  <style>
+    .contenedor-bordes-redondos {
+      border-radius: 15px;
+    }
+    .bg-color-personalizado {
+      background-color: #b17c54;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="bg-color-personalizado p-2 contenedor-bordes-redondos">
+          <h2 class="text-center">Buscar Historias</h2>
+          <form class="d-flex"action="{% url 'encontrar_historias'%}" method='get'>
+            {% csrf_token %}
+            <input class="form-control me-2" type="text" name="buscar" id="buscar">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<hr>
+<hr>
+<hr>
+</html>
+
+{% endblock Contenido %}
+
+{% block InformacionExtra %}
+<hr>
+{% endblock InformacionExtra %}

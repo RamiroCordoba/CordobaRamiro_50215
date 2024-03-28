@@ -1,0 +1,92 @@
+{% extends 'recetasApp/index.html' %} {% block Titulo %}
+<header>
+  <h1 class="site-heading text-center text-faded d-none d-lg-block">
+    <span class="site-heading-upper text-primary mb-3">~ Sabor a mi ~</span>
+    <span class="site-heading-lower">Recetas</span>
+  </h1>
+</header>
+
+{% endblock Titulo %} {% block Contenido %}
+<table>
+  <tr>
+    <td width="200"><h2>Recetas</h2></td>
+    <td><a href="{% url 'receta_create'%}" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-lg" title="Crear"></i> </a></td>
+  </tr>
+</table>
+<hr>
+<!-- Navegacion extra de recetas -->
+<nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+  <div class="container-fluid">
+    <a class="btn btn-primary" href="{% url 'receta_create'%}" role="button">Nueva receta</a>
+    <form class="d-flex"action="{% url 'encontrar_Recetas'%}" method='get'>
+      {% csrf_token %}
+      <input class="form-control me-2" type="text" name="buscar" id="buscar">
+      <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form>
+  </div>
+</nav>
+  <style>
+    .contenedor-bordes-redondos {
+      border-radius: 15px;
+    }
+    .bg-color-personalizado {
+      background-color: #b17c54;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="bg-color-personalizado p-2 contenedor-bordes-redondos">
+          <h2 class="text-center">Recetas</h2>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Descripcion</th>
+                <th>Ingredientes</th>
+                <th>Instrucciones</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for r in recetas %}
+              <tr>
+                <td>{{r.id}}</td>
+                <td>{{r.titulo}}</td>
+                <td>{{r.descripcion}}</td>
+                <td>{{r.ingredientes}}</td>
+                <td>{{r.instrucciones}}</td>
+
+                <td>
+                  <a
+                    href="{% url 'receta_update' r.id %}"
+                    class="btn btn-primary"
+                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                    ><i class="fa fa-edit fa-sm" title="Editar"></i>
+                  </a>
+                  <a
+                    href="{% url 'receta_delete' r.id %}"
+                    class="btn btn-danger"
+                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                    ><i class="fa fa-trash fa-sm" title="Eliminar"></i>
+                  </a>                
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<hr>
+<hr>
+<hr>
+</html>
+{% endblock Contenido %} {% block InformacionExtra %}
+<hr>
+{% endblock InformacionExtra %}

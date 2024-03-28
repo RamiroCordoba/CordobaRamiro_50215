@@ -1,0 +1,33 @@
+{% extends 'recetasApp/index.html' %} {% block Titulo %}
+<header>
+  <h1 class="site-heading text-center text-faded d-none d-lg-block">
+    <span class="site-heading-upper text-primary mb-3">~ Sabor a mi ~</span>
+    <span class="site-heading-lower">Sobre Nosotros</span>
+  </h1>
+</header>
+
+{% endblock Titulo %} {% block Contenido %} {% load static %}
+<section class="page-section clearfix">
+  <div class="container">
+      <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+        <h2 class="section-heading mb-4">
+          <span class="section-heading-upper">~ Pasión por la comida ~</span>
+          <span class="section-heading-lower">Aromas del recuerdo</span>
+        </h2>
+        <p class="mb-3">
+          La cocina es un poderoso portal que nos transporta a través del
+          tiempo, evocando recuerdos entrañables de nuestra infancia con cada
+          aroma, sabor y costumbre culinaria. Es como un mágico reencuentro con
+          nuestros seres queridos, donde cada platillo cocinado con amor por un
+          familiar se convierte en un vívido tesoro de nostalgia.
+        </p>
+        <div class="intro">
+          <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{%static 'assets/img/ramiroCord.jpg'%}" alt="..."/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock Contenido %} {% block InformacionExtra %}
+<h1></h1>
+{% endblock InformacionExtra %}
