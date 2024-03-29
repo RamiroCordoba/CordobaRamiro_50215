@@ -23,7 +23,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="bg-color-personalizado p-4 contenedor-bordes-redondos">
-          <form action="" method="post">
+          <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <table>
               {{ form.as_table }}

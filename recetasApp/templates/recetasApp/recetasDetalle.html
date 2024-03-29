@@ -1,0 +1,40 @@
+{% extends 'recetasApp/recetas.html' %} {% block Titulo %}
+<header>
+  <h1 class="site-heading text-center text-faded d-none d-lg-block">
+    <span class="site-heading-upper text-primary mb-3">~ Detalles de ~</span>
+    <span class="site-heading-lower">{{receta.titulo}}</span>
+  </h1>
+</header>
+
+{% endblock Titulo %} {% block Contenido %}
+<section class="page-section cta about-heading text:center">
+  <div class="card border-1">
+    <div class="row g-5">
+      <div class="col-md-3">
+        <img
+          src="{{ receta.imagenReceta.url }}"
+          class="img-fluid rounded-start"
+        />
+      </div>
+      <div class="col-md-6">
+        <div class="card-body">
+          <h3 class="card-title">{{receta.titulo}}</h3>
+          <h4>Descripcion</h4>
+          <p class="card-text">{{receta.descripcion}}</p>
+          <h4>Ingredientes</h4>
+          <p class="card-text">{{receta.ingredientes}}</p>
+          <h4>Instrucciones</h4>
+          <p class="card-text">{{receta.instrucciones}}</p>
+          <h5>Autor</h5>
+          <p class="card-text">
+            <small class="text-body-secondary">{{receta.autor}}</small>
+          </p>
+        </div>
+      </div>
+      <a href="{% url 'recetas' %}" class="btn btn-danger btn-lg">Volver</a>
+    </div>
+  </div>
+</section>
+{% endblock Contenido %} {% block InformacionExtra %}
+<h1></h1>
+{% endblock InformacionExtra %}

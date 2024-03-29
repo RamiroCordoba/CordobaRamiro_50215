@@ -9,4 +9,3 @@ class RecetaAdmin(admin.ModelAdmin):
 
 admin.site.register(Receta, RecetaAdmin)
 admin.site.register(Historia)
-admin.site.register(Categoria)

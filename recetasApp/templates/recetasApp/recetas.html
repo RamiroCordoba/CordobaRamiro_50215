@@ -7,12 +7,7 @@
 </header>
 
 {% endblock Titulo %} {% block Contenido %}
-<table>
-  <tr>
-    <td width="200"><h2>Recetas</h2></td>
-    <td><a href="{% url 'receta_create'%}" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-lg" title="Crear"></i> </a></td>
-  </tr>
-</table>
+
 <hr>
 <!-- Navegacion extra de recetas -->
 <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
@@ -40,49 +35,42 @@
       <div class="col-md-10">
         <div class="bg-color-personalizado p-2 contenedor-bordes-redondos">
           <h2 class="text-center">Recetas</h2>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Titulo</th>
-                <th>Descripcion</th>
-                <th>Ingredientes</th>
-                <th>Instrucciones</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for r in recetas %}
-              <tr>
-                <td>{{r.id}}</td>
-                <td>{{r.titulo}}</td>
-                <td>{{r.descripcion}}</td>
-                <td>{{r.ingredientes}}</td>
-                <td>{{r.instrucciones}}</td>
-
-                <td>
-                  <a
-                    href="{% url 'receta_update' r.id %}"
-                    class="btn btn-primary"
-                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
-                    ><i class="fa fa-edit fa-sm" title="Editar"></i>
-                  </a>
-                  <a
-                    href="{% url 'receta_delete' r.id %}"
-                    class="btn btn-danger"
-                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
-                    ><i class="fa fa-trash fa-sm" title="Eliminar"></i>
-                  </a>                
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+          <div class="row">
+            {% for r in recetas %}
+              <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                  {% if r.imagenReceta %}
+                      <img src="{{ r.imagenReceta.url }}" class="card-img-top" alt="...">
+                  {% else %}
+                      <!-- En caso de no tener una imagen, por defecto se pondra esta -->
+                      <img src="/media/receta_default.png" class="card-img-top" alt="Imagen Predeterminada">
+                  {% endif %}
+                  <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{r.titulo}}</h5>
+                    <p class="card-text overflow-hidden" style="max-height: 100px;">{{r.descripcion}}</p>
+                    <p class="card-text">{{r.autor}}</p>
+                    <a href="{%url 'receta_detalle' r.id %}" class="btn btn-primary mt-auto">Mas detalles</a>
+                    {% if request.user == r.autor or  request.user.is_staff %}
+                    <a href="{% url 'receta_update' r.id %}" class="btn btn-primary mt-2" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                      <i class="fa fa-edit fa-sm" title="Editar"></i>
+                    </a>
+                    <a href="{% url 'receta_delete' r.id %}" class="btn btn-danger mt-2" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                      <i class="fa fa-trash fa-sm" title="Eliminar"></i>
+                    {% endif %}
+                    </a>   
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
         </div>
       </div>
     </div>
   </div>
 </body>
+
+
+
 <hr>
 <hr>
 <hr>

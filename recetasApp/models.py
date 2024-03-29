@@ -1,12 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 # Create your models here.
 class Historia(models.Model):
     titulo = models.CharField(max_length=70)
-    # imagen=models.ImageField(upload_to='historias')
+    descripcionBreve = models.TextField(max_length=180)
     historia = models.TextField()
+    autor = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    fechaPublicacion = models.DateTimeField(default=timezone.now)
 
     class Meta:
         verbose_name = "historia"
@@ -23,6 +26,8 @@ class Receta(models.Model):
     descripcion = models.TextField()
     ingredientes = models.TextField()
     instrucciones = models.TextField()
+    autor = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    imagenReceta = models.ImageField(blank=True, upload_to="media/")
 
     class Meta:
         verbose_name = "receta"
@@ -32,28 +37,6 @@ class Receta(models.Model):
     # imagen=models.ImageField(upload_to='recetas')
     def __str__(self):
         return f"{self.titulo}"
-
-
-class Comentario(models.Model):
-    opinion = models.TextField()
-    # usuario=models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    # receta=models.ForeignKey(Receta, related_name="comentarios",on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name = "comentario"
-        verbose_name_plural = "comentarios"
-
-
-class Categoria(models.Model):
-    nombre = models.CharField(max_length=30)
-
-    class Meta:
-        verbose_name = "categoria"
-        verbose_name_plural = "categorias"
-        ordering = ["nombre"]
-
-    def __str__(self):
-        return f"{self.nombre}"
 
 
 # _____________ Avatares

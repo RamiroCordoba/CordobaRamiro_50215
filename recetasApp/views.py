@@ -19,6 +19,10 @@ def sobreNosotros(request):
     return render(request, "recetasApp/about.html")
 
 
+def paginaNoEncontrada(request):
+    return render(request, "recetasApp/error404.html")
+
+
 # ________________________________ Recetas ________________________________#
 # ___________ CRUD de receta
 @login_required
@@ -30,18 +34,10 @@ def recetas(request):
 @login_required
 def recetaCreate(request):
     if request.method == "POST":
-        miForm = RecetaForm(request.POST)
+        miForm = RecetaForm(request.POST, request.FILES)
         if miForm.is_valid():
-            receta_titulo = miForm.cleaned_data.get("titulo")
-            receta_descripcion = miForm.cleaned_data.get("descripcion")
-            receta_ingredientes = miForm.cleaned_data.get("ingredientes")
-            receta_instrucciones = miForm.cleaned_data.get("instrucciones")
-            recetaNueva = Receta(
-                titulo=receta_titulo,
-                descripcion=receta_descripcion,
-                ingredientes=receta_ingredientes,
-                instrucciones=receta_instrucciones,
-            )
+            recetaNueva = miForm.save(commit=False)
+            recetaNueva.autor = request.user
             recetaNueva.save()
             return redirect(reverse_lazy("recetas"))
     else:
@@ -99,6 +95,13 @@ def encontrarRecetas(request):
     return render(request, "recetasApp/recetas.html", contexto)
 
 
+@login_required
+def mostrarDetalles(request, id_receta):
+    laRreceta = Receta.objects.get(id=id_receta)
+    contexto = {"receta": laRreceta}
+    return render(request, "recetasApp/recetasDetalle.html", contexto)
+
+
 # ________________________________ Historias ________________________________#
 # ___________ CRUD de historia
 @login_required
@@ -108,16 +111,26 @@ def historias(request):
 
 
 @login_required
+def historiaAmpliada(request, id_historia):
+    laHistoria = Historia.objects.get(id=id_historia)
+    contexto = {"historia": laHistoria}
+    return render(request, "recetasApp/historiaAmpliada.html", contexto)
+
+
+@login_required
 def historiasCreate(request):
     if request.method == "POST":
         miForm = HistoriaForm(request.POST)
         if miForm.is_valid():
             historia_titulo = miForm.cleaned_data.get("titulo")
             historia_historia = miForm.cleaned_data.get("historia")
+            historia_descripcionBreve = miForm.cleaned_data.get("descripcionBreve")
             historiaNueva = Historia(
                 titulo=historia_titulo,
                 historia=historia_historia,
+                descripcionBreve=historia_descripcionBreve,
             )
+            historiaNueva.autor = request.user
             historiaNueva.save()
             contexto = {"historias": Historia.objects.all()}
             return render(request, "recetasApp/historias.html", contexto)
@@ -130,9 +143,10 @@ def historiasCreate(request):
 def historiaUpdate(request, id_historia):
     historia = Historia.objects.get(id=id_historia)
     if request.method == "POST":
-        miForm = HistoriaForm(request.POST)
+        miForm = HistoriaForm(request.POST, instance=historia)
         if miForm.is_valid():
             historia.titulo = miForm.cleaned_data.get("titulo")
+            historia.descripcionBreve = miForm.cleaned_data.get("descripcionBreve")
             historia.historia = miForm.cleaned_data.get("historia")
             historia.save()
             contexto = {"historias": Historia.objects.all()}

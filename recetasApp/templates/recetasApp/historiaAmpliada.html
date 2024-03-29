@@ -1,0 +1,40 @@
+{% extends 'recetasApp/recetas.html' %} {% block Titulo %}
+<header>
+  <h1 class="site-heading text-center text-faded d-none d-lg-block">
+    <span class="site-heading-upper text-primary mb-3">~ Historia de ~</span>
+    <span class="site-heading-lower">{{historia.titulo}}</span>
+  </h1>
+</header>
+
+{% endblock Titulo %} {% block Contenido %}
+<section class="page-section cta about-heading text:center">
+  <div class="card border-1">
+    <div class="row g-5">
+      <div class="col-md-3">
+        <img
+          src="https://img.freepik.com/vector-premium/caricatura-nino-leyendo-libro_399963-3165.jpg"
+          class="img-fluid rounded-start"
+        />
+      </div>
+      <div class="col-md-6">
+        <div class="card-body">
+          <h3 class="card-title">{{historia.titulo}}</h3>
+          <h4>Descripcion:</h4>
+          <p class="card-text">{{historia.descripcionBreve}}</p>
+          <h4>Historia:</h4>
+          <p class="card-text">{{historia.historia}}</p>
+          <h5>Escrita por:</h5>
+          <p class="card-text">
+            <small class="text-body-secondary">{{historia.autor}}</small>
+          </p>
+        </div>
+      </div>
+      <a href="{% url 'historias_de_cocina' %}" class="btn btn-danger btn-lg"
+        >Volver</a
+      >
+    </div>
+  </div>
+</section>
+{% endblock Contenido %} {% block InformacionExtra %}
+<h1></h1>
+{% endblock InformacionExtra %}

@@ -2,18 +2,29 @@ from django import forms
 from datetime import datetime
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from recetasApp.models import *
 
 
-class HistoriaForm(forms.Form):
-    titulo = forms.CharField(max_length=70, required=True)
-    historia = forms.CharField(widget=forms.Textarea)
+class HistoriaForm(forms.ModelForm):
+    class Meta:
+        model = Historia
+        fields = [
+            "titulo",
+            "descripcionBreve",
+            "historia",
+        ]
 
 
-class RecetaForm(forms.Form):
-    titulo = forms.CharField(max_length=70, required=True)
-    descripcion = forms.CharField()
-    ingredientes = forms.CharField(widget=forms.Textarea)
-    instrucciones = forms.CharField(widget=forms.Textarea)
+class RecetaForm(forms.ModelForm):
+    class Meta:
+        model = Receta
+        fields = [
+            "titulo",
+            "descripcion",
+            "ingredientes",
+            "instrucciones",
+            "imagenReceta",
+        ]
 
 
 class RegistroForm(UserCreationForm):
