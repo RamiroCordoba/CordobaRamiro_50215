@@ -52,3 +52,4 @@ Nota: Las opciones de editar y eliminar recetas o historias solo estaran disponi
 Ver archivo titulado "Pruebas_Proyecto_Python_Cordoba" el cual se encuentra en el presente repositorio.
 
 ## Video Demostración
+https://youtu.be/ObRdQCPq400?si=T_yRY6nusKi80LaO
