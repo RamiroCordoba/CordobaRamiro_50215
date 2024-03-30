@@ -50,6 +50,11 @@ Nota: Las opciones de editar y eliminar recetas o historias solo estaran disponi
 ## Pruebas Realizadas
 
 Ver archivo titulado "Pruebas_Proyecto_Python_Cordoba" el cual se encuentra en el presente repositorio.
+## Usuarios para probar
+### Usuario administrador
+Usuario: admin clave: admin
+### Usuario comun
+Usuario: panduFaulin clave:153590327Mimo
 
 ## Video Demostración
 https://youtu.be/ObRdQCPq400?si=T_yRY6nusKi80LaO
